@@ -28,5 +28,21 @@ CREATE TABLE invoices (
   CONSTRAINT fk_medical_history FOREIGN KEY(medical_history_id) REFERENCES medical_histories(id)
 );
 
+CREATE TABLE medical_histories (
+  id int,
+  admitted_at timestamp,
+  patient_id int,
+  status varchar,
+  PRIMARY KEY (id)
+  CONSTRAINT fk_medical_history FOREIGN KEY(id) REFERENCES treatments(id)
+);
 
+CREATE INDEX  ON  medical_histories (admitted_at);
 
+CREATE TABLE treatments (
+  id int,
+  type varchar,
+  name varchar,
+  PRIMARY KEY (id)
+  CONSTRAINT fk_id FOREIGN KEY(id) REFERENCES medical_histories(id)
+);
